@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <link rel="stylesheet" href="styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <script src="main.js" async></script>
+    <title>SHOP |E-Commerce</title>
+  </head>
+  <body>
+    <header>
+      <div class="overlay"></div>
+      <nav>
+        <h1>SHOP</h1>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li class="cart">
+            <a href="cart.html">
+              <ion-icon name="basket"></ion-icon>Cart <span>0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="image">
+        <img src="./images/AnimeFig1.jfif" alt="Anime Figurine" />
+        <h3>Tokyo Ghoul: Figurine</h3>
+        <h2>$15.00</h2>
+        <a class="add-cart cart1" href="#">Add Cart</a>
+      </div>
+      <div class="image">
+        <img src="./images/AnimeFig2.jfif" alt="Anime Figurine" />
+        <h3>One Punch Man: Figurine</h3>
+        <h2>$20.00</h2>
+        <a class="add-cart cart2" href="#">Add Cart</a>
+      </div>
+      <div class="image">
+        <img src="./images/AnimeFig3.jfif" alt="Anime Figurine" />
+        <h3>Hero Academia: Figurine</h3>
+        <h2>$25.00</h2>
+        <a class="add-cart cart3" href="#">Add Cart</a>
+      </div>
+    </div>
+
+    <div class="chatbot">
+      <button class="chat-btn" onclick="opened(); hide();">
+        <ion-icon name="chatbubble-outline"></ion-icon>
+      </button>
+      <div class="dialogflow">
+        <iframe
+          src="https://console.dialogflow.com/api-client/demo/embedded/b693ba06-0086-42de-a80f-8c3f920a1a3b"
+        ></iframe>
+      </div>
+    </div>
+
+    <hr />
+    <footer class="footer-basic">
+      <div class="social">
+        <a href="#"><i class="icon ion-social-instagram"></i></a
+        ><a href="#"><i class="icon ion-social-snapchat"></i></a
+        ><a href="#"><i class="icon ion-social-twitter"></i></a
+        ><a href="#"><i class="icon ion-social-facebook"></i></a>
+      </div>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="index.html">Home</a></li>
+        <li class="list-inline-item"><a href="#">Login</a></li>
+        <li class="list-inline-item"><a href="#">About</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+      </ul>
+      <p class="copyright">Company Name © 2018</p>
+    </footer>
+  </body>
+</html>
