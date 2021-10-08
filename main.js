@@ -143,8 +143,31 @@ function clearLocalStorage(){
         window.location.reload();
     }
 }
+/*Chatbot open and close*/
+const dialogflow = document.querySelector('.dialogflow');
+const chatBtn = document.querySelector('.chat-btn');
+function opened(){  
+    dialogflow.classList.add('active');
+}
+function hide(){  
+    chatBtn.addEventListener('click', ()=>{
+        dialogflow.classList.remove('active');
+        console.log('Clicked');
+        location.reload();
+    })
+}
+
+/* Checkout Button */
+function thanks() {
+    alert('Thank You For Your Purchase!');
+    if(localStorage.getItem("totalCost") != null){
+        localStorage.clear();
+        window.location.reload();
+    }
+}
 
 /* Cross Button Function (remove item row) */
+/*
 function remove(product){
     let removeBtn = document.getElementsByName('close-circle-outline');
     let cartItems = localStorage.getItem("productsInCart");
@@ -215,7 +238,7 @@ function manageQuantity() {
     }
 }
 
-
+*/
 /*
 function removeItems(product){
     let removeBtn = document.getElementsByName('close-circle-outline');
@@ -244,24 +267,3 @@ Object.values(cartItems).map(item =>{
 });
 */
 
-/*Chatbot open and close*/
-const dialogflow = document.querySelector('.dialogflow');
-const chatBtn = document.querySelector('.chat-btn');
-function opened(){  
-    dialogflow.classList.add('active');
-}
-function hide(){  
-    chatBtn.addEventListener('click', ()=>{
-        dialogflow.classList.remove('active');
-        console.log('Clicked');
-        location.reload();
-    })
-}
-/* Checkout Button */
-function thanks() {
-    alert('Thank You For Your Purchase!');
-    if(localStorage.getItem("totalCost") != null){
-        localStorage.clear();
-        window.location.reload();
-    }
-}
