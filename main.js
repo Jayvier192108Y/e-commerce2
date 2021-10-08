@@ -1,21 +1,21 @@
 let carts = document.querySelectorAll('.add-cart');
 let products =[
     {
-        name:'Tokyo Ghoul: Figurine',
+        name:'Attack on Titan: Figurine',
         tag:'AnimeFig1',
-        price:15,
+        price:35,
         inCart:0,
     },
     {
-        name:'One Punch Man: Figurine',
+        name:'Rezero: Figurine',
         tag:'AnimeFig2',
-        price:20,
+        price:25,
         inCart:0,
     },
     {
         name:'Hero Academia: Figurine',
         tag:'AnimeFig3',
-        price:25,
+        price:30,
         inCart:0,
     }
 ]
