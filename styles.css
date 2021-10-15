@@ -15,8 +15,8 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100px;
-  position: relative;
+  height: 120px;
+  top: 0;
 }
 
 .overlay {
@@ -33,7 +33,7 @@ header {
 }
 /* Nav bar */
 nav {
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
   left: 0;
@@ -42,6 +42,7 @@ nav {
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 50px 60px 0 60px;
+  overflow: hidden;
 }
 nav li {
   list-style: none;
@@ -81,6 +82,17 @@ nav li a:hover {
   text-decoration: none;
 }
 /* Product Container */
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-bottom: 300px;
+    min-height: 110vh;
+  }
+}
 .container,
 .products-container {
   display: flex;
@@ -111,14 +123,21 @@ nav li a:hover {
   font-family: Arial, Helvetica, sans-serif;
 }
 .add-cart {
-  position: absolute;
   width: 100%;
   text-align: center;
   text-decoration: none;
-  background-color: darkgrey;
-  transition: all 0.3s ease-in-out;
-  opacity: 0;
+  background-color: rgb(60, 60, 61);
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
 }
+.add-cart:hover {
+  background-color: rgb(2, 2, 2);
+  color: #c51717;
+}
+
+/*
 .image:hover .cart1,
 .image:hover .cart2,
 .image:hover .cart3 {
@@ -127,8 +146,10 @@ nav li a:hover {
   padding: 10px;
   text-decoration: none;
 }
+*/
 
 /*Cart Page*/
+
 .products-container {
   max-width: 850px;
   justify-content: space-around;
