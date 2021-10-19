@@ -98,7 +98,7 @@ function displayCart() {
                 <div class="cart-row">
                     <div class="product">
                         <ion-icon name="close-circle-outline"></ion-icon>
-                        <img src="./images/${item.tag}.jfif">
+                        <img src="${item.tag}.jfif">
                         <span>${item.name}</span>
                     </div>
                     <div class="price">$${item.price}</div>
