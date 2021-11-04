@@ -130,10 +130,105 @@ function displayCart() {
             
         `
     }
-    
+
+    deleteButtons();
+    manageQuantity();
 }
+
+function deleteButtons() {
+    let deleteButtons = document.querySelectorAll('.product ion-icon');
+    let productName;
+    let productNumbers = localStorage.getItem('cartNumbers');
+    let cartItems = localStorage.getItem('productsInCart');
+    cartItems = JSON.parse(cartItems);
+    let cartCost = localStorage.getItem('totalCost');
+    
+
+
+    for(let i=0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('click', () => {
+            console.log(deleteButtons[i].parentElement.textContent)
+            productName = deleteButtons[i].parentElement.textContent.trim().toLowerCase().replace(/ /g, '');
+            // console.log(productName);
+            // console.log(cartItems[productName].name + " " + cartItems[productName].inCart)
+            localStorage.setItem('cartNumbers', productNumbers - cartItems[productName].inCart );
+
+            localStorage.setItem('totalCost', cartCost - ( cartItems[productName].price * cartItems[productName].inCart));
+
+            delete cartItems[productName];
+            localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+
+            displayCart();
+            onLoadCartNumbers();
+        });
+    }
+}
+
+function manageQuantity() {
+    let decreaseButtons = document.querySelectorAll('.decrease');
+    let increaseButtons = document.querySelectorAll('.increase');
+    let cartItems = localStorage.getItem('productsInCart');
+    let currentQuantity = 0;
+    let currentProduct = "";
+    cartItems = JSON.parse(cartItems);
+    console.log(cartItems);
+
+    for(let i=0; i < decreaseButtons.length; i++) {
+        decreaseButtons[i].addEventListener('click', () => {
+            currentQuantity = decreaseButtons[i].parentElement.querySelector('span').textContent;
+            console.log(currentQuantity);
+            currentProduct = decreaseButtons[i].parentElement.previousElementSibling.previousElementSibling.querySelector('span').textContent.toLowerCase().replace(/ /g, '').trim();
+            console.log(currentProduct);
+
+            if( cartItems[currentProduct].inCart > 1 ) {
+                cartItems[currentProduct].inCart -= 1;
+                cartNumbers( cartItems[currentProduct], "decrease" );
+                totalCost( cartItems[currentProduct], "decrease" );
+                localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+                displayCart();
+            }
+        });
+    }
+
+    for(let i=0; i < increaseButtons.length; i++) {
+        increaseButtons[i].addEventListener('click', () => {
+            console.log("Increase button");
+            currentQuantity = increaseButtons[i].parentElement.querySelector('span').textContent;
+            console.log(currentQuantity);
+
+            currentProduct = increaseButtons[i].parentElement.previousElementSibling.previousElementSibling.querySelector('span').textContent.toLowerCase().replace(/ /g, '').trim();
+            console.log(currentProduct);
+
+            
+                cartItems[currentProduct].inCart += 1;
+                cartNumbers( cartItems[currentProduct]);
+                totalCost( cartItems[currentProduct]);
+                localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+                displayCart();
+            
+        })
+    }
+}
+
+
+/* Displaying Orders while checking out */
+function displayOrder() {
+    let cartItems = localStorage.getItem('productsInCart')
+    document.getElementById("orders").value = "Orders: " + cartItems
+}
+/* Displaying Total while checking out */
+function displayTotal() {
+    let total = localStorage.getItem('totalCost')
+    document.getElementById("total").value = "Total Amount: $"  + total
+}
+
+
 onLoadCartNumbers();
 displayCart();
+
+displayOrder();
+displayTotal()
+
 
 /* Clear cart button function */
 function clearLocalStorage(){
@@ -159,14 +254,89 @@ function hide(){
 
 /* Checkout Button */
 function thanks() {
-    alert('Thank You For Your Purchase!');
+    alert('Please Check Your Email for Payment' + "\n" + 'Thank You For Your Purchase!');
     if(localStorage.getItem("totalCost") != null){
         localStorage.clear();
         window.location.reload();
     }
 }
 
+/*Checkout Info*/
+const openModalButtons = document.querySelectorAll('[data-modal-target]')
+const closeModalButtons = document.querySelectorAll('[data-close-button]')
+const overlay = document.getElementById('overlay')
 
+openModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = document.querySelector(button.dataset.modalTarget)
+    openModal(modal)
+  })
+})
+
+overlay.addEventListener('click', () => {
+  const modals = document.querySelectorAll('.modal.active')
+  modals.forEach(modal => {
+    closeModal(modal)
+  })
+})
+
+closeModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal')
+    closeModal(modal)
+  })
+})
+
+function openModal(modal) {
+  if (modal == null) return
+  modal.classList.add('active')
+  overlay.classList.add('active')
+}
+
+function closeModal(modal) {
+  if (modal == null) return
+  modal.classList.remove('active')
+  overlay.classList.remove('active')
+}
+
+
+
+/* Paypal 
+paypal
+  .Buttons({
+    createOrder: function () {
+      return fetch("/create-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: [
+            {
+              id: 1,
+              quantity: 2,
+            },
+            { id: 2, quantity: 3 },
+          ],
+        }),
+      })
+        .then(res => {
+          if (res.ok) return res.json()
+          return res.json().then(json => Promise.reject(json))
+        })
+        .then(({ id }) => {
+          return id
+        })
+        .catch(e => {
+          console.error(e.error)
+        })
+    },
+    onApprove: function (data, actions) {
+      return actions.order.capture()
+    },
+  })
+  .render("#paypal")
+*/
 
 /* Cross Button Function (remove item row) */
 /*
