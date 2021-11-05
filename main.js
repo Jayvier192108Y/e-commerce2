@@ -131,8 +131,8 @@ function displayCart() {
         `
     }
 
-    deleteButtons();
-    manageQuantity();
+    //deleteButtons();
+    //manageQuantity();
 }
 
 function deleteButtons() {
@@ -254,7 +254,7 @@ function hide(){
 
 /* Checkout Button */
 function thanks() {
-    alert('Please Check Your Email for Payment' + "\n" + 'Thank You For Your Purchase!');
+    alert('Please Check Your Email for Information' + "\n" + 'Please Proceed to Payment Page');
     if(localStorage.getItem("totalCost") != null){
         localStorage.clear();
         window.location.reload();
